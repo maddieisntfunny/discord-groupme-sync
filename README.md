@@ -39,7 +39,7 @@ in fall 2024, groupme banned the use of ngrok urls in a groupme bot's callback U
 
 ## image/video attachments
 
-image and video attachments are very much hardcoded in this. these issues (let's be honests, the "issue" is laziness) can be fixed with proper loops and filtering in the groupme-to-discord direction and proper loops, filtering, and object building in the discord-to-groupme direction. 
+image and video attachments are very much hardcoded in this. these issues (read: laziness) can be fixed with proper loops and filtering in the groupme-to-discord direction and proper loops, filtering, and object building in the discord-to-groupme direction. 
 
 for the groupme-to-discord direction: there is an `attachments` array for every message object, each attachment has a `type`. currently the code just checks for the first object's `type` and in the case that it's an image, it appends its `url` to the message body. this can lead to lots of issues obviously, some of which though stem from the fact that in groupme messages, many things are considered attachments, including user mentions, stickers, or an object indicating that the message is a reply to another message. in these cases, any attached image is most likely not the first element. obvious solution here is to loop through `attachments` and filter for images & videos, tack on their `url`s to a string, then add that string to the message body.
 
@@ -49,9 +49,9 @@ in the discord-to-groupme direction: discord messages also have an `attachments`
 
 ## cross-platform mentions & cross-platform replies
 
-both of these are *technically* possible but potentially annoying to implement. a centralized store of group chat user data needs to exist mapping each discord user ID to a groupme user ID with those mapped to their discord display name and groupme user name. the IDs never change but the user names can, so those would likely need to be updated by hand every time as I don't think there's a way to make the discord bot listen for that and there's certainly no way to make the groupme bot listen for that.
+both of these are *technically* possible but potentially annoying to implement. a centralized store of group chat user data needs to exist mapping each discord user ID to a groupme user ID with those mapped to their respective discord display name and groupme user name. the IDs never change but the user names can, so those would likely need to be updated by hand every time as I don't think there's a way to make the discord bot listen for that and there's certainly no way to make the groupme bot listen for that.
 
-in the event of mentions or replies, the parts of the code that reformat messages for other platforms would need to do some quick lookups against that object and build the proper mention/reply objects based on the mapping of that discord user ID is the groupme user name, or vice versa. i think this would have been a very cool feature, since as it stands now you won't get a proper mention notification if someone mentions you or replies to your groupme message in discord (or the other way around).
+in the event of mentions or replies, the parts of the code that reformat messages for other platforms would need to do some quick lookups against that object and build the proper mention/reply objects based on the mapping of that discord user ID to the the corresponding groupme user name, or vice versa. i think this would have been a very cool feature, since as it stands now you won't get a proper mention notification if someone mentions you or replies to your groupme message in discord (or the other way around).
 
 # limitations
 
