@@ -1,4 +1,4 @@
-this project was born out of my annoyance with groupme and a couple friends' stubborn refusal to switch the group chat to a channel in our discord server. this project ended because groupme broke certain functionality that i used, and then the group decided to a platform other than discord anyway.
+this project was born out of my annoyance with groupme and a couple friends' stubborn refusal to switch the group chat to a channel in our discord server. this project ended because groupme broke certain functionality that i used, and then the group decided to move to a platform other than discord anyway.
 
 this project is very unfinished. i don't have any intention at the moment to continue to work on the  fixes or additional features i had planned because i dont use groupme for anything anymore and gm is honestly too trash for me to care enough, but my notes on those features are below if someday i (or you!) want to flesh this out.
 
@@ -51,7 +51,7 @@ in the discord-to-groupme direction: discord messages also have an `attachments`
 
 both of these are *technically* possible but potentially annoying to implement. a centralized store of group chat user data needs to exist mapping each discord user ID to a groupme user ID with those mapped to their discord display name and groupme user name. the IDs never change but the user names can, so those would likely need to be updated by hand every time as I don't think there's a way to make the discord bot listen for that and there's certainly no way to make the groupme bot listen for that.
 
-in the event of mentions or replies, the parts of the code that reformat messages for other platforms would need to do some quick lookups against that object and build the proper mention/reply objects based on that discord user ID is mapped to the groupme user name, or vice versa. i think this would have been a very cool feature, since as it stands now you won't get a proper mention notification if someone mentions you or replies to your groupme message in discord (or the other way around).
+in the event of mentions or replies, the parts of the code that reformat messages for other platforms would need to do some quick lookups against that object and build the proper mention/reply objects based on the mapping of that discord user ID is the groupme user name, or vice versa. i think this would have been a very cool feature, since as it stands now you won't get a proper mention notification if someone mentions you or replies to your groupme message in discord (or the other way around).
 
 # limitations
 
